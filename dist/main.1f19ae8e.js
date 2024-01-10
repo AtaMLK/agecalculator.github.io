@@ -121,43 +121,43 @@ parcelRequire = (function (modules, cache, entry, globalName) {
 "use strict";
 
 var day = document.querySelector(".day");
-var nowDay = document.querySelector('.calculated-day');
+var nowDay = document.querySelector(".calculated-day").textContent;
 var month = document.querySelector(".month");
-var nowMonth = document.querySelector('.calculated-month');
+var nowMonth = document.querySelector(".calculated-month").textContent;
 var year = document.querySelector(".year");
-var nowYear = document.querySelector('.calculated-year');
-var button = document.querySelector(".img-btn"); /* 
-                                                 const notValid = document.querySelector('#notValid') */
-
+var nowYear = document.querySelector(".calculated-year").textContent;
+var button = document.querySelector(".img-btn");
+var notValidMessage;
 var now = new Date();
-console.log(now);
-var ageMonth = now.getMonth();
-var presentYear = now.getFullYear();
-console.log(now.getSeconds);
-button.addEventListener("click", function (day, month, year) {
-  var ageCalc = function ageCalc() {
-    nowDay.textContent = "".concat(now.getDay() - +day.value);
+button.addEventListener("click", function () {
+  var thisMonth = now.getMonth() - +month.value;
+  nowDay = "".concat(+(now.getDate() - +day.value));
+  nowMonth = "".concat(+(thisMonth > 0 ? thisMonth + 1 : 12 - (thisMonth + 1) * -1));
+  nowYear = "".concat(+(now.getFullYear() - +year.value));
+  if (notValidMessage) {
+    notValidMessage.remove();
+  }
+  var validMessage = function validMessage(element, message) {
+    notValidMessage = document.createElement('p');
+    notValidMessage.style.color = "var(--Lightred)";
+    notValidMessage.style.fontSize = "0.65rem";
+    notValidMessage.textContent = message;
+    element.insertAdjacentElement("afterend", notValidMessage);
+    element.value = "";
   };
   if (day.value > 31) {
-    day.insertAdjacentHTML("afterend", "<p style=\"color: var(--Lightred);\"> Not valid Day</p>");
-    day.value = "";
+    validMessage(day, "Not a valid Day");
   }
-  if (month.value > 12) {
-    month.insertAdjacentHTML("afterend", "<p style=\"color: var(--Lightred);\"> Not valid Month</p>");
-    month.value = "";
+  if (month.value >= 13) {
+    validMessage(month, "Not a valid Month");
   }
-  if (year.value > presentYear) {
-    year.insertAdjacentHTML("afterend", "<p  style=\"color: var(--Lightred);\"> Not valid Year</p>");
-    year.value = "";
+  if (year.value > now.getFullYear()) {
+    validMessage(year, "Not a valid year");
   }
   return;
-}
+});
 /* 
-year.parentNode.removeChild(year.nextSibling) */);
-
-/* const ageCalc = function () {
-    nowDay.textContent=`${(now.getDay()-(+day.value))}`
-}; */
+year.parentNode.removeChild(year.nextSibling) */
 },{}],"../../../AppData/Roaming/npm/node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
@@ -183,7 +183,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "63210" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "54136" + '/');
   ws.onmessage = function (event) {
     checkedAssets = {};
     assetsToAccept = [];

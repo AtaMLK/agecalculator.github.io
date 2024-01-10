@@ -1,54 +1,45 @@
 "use strict";
 
 const day = document.querySelector(".day");
-const nowDay = document.querySelector('.calculated-day')
+let nowDay = document.querySelector(".calculated-day").textContent;
 const month = document.querySelector(".month");
-const nowMonth = document.querySelector('.calculated-month')
+let nowMonth = document.querySelector(".calculated-month").textContent;
 const year = document.querySelector(".year");
-const nowYear = document.querySelector('.calculated-year')
-const button = document.querySelector(".img-btn"); /* 
-const notValid = document.querySelector('#notValid') */
+let nowYear = document.querySelector(".calculated-year").textContent;
+const button = document.querySelector(".img-btn"); 
+let notValidMessage;
 
 const now = new Date();
-console.log(now);
-const ageMonth = now.getMonth();
-const presentYear = now.getFullYear();
-console.log(now.getSeconds);
 
-button.addEventListener(
-  "click",
-  function (day,month,year) {
-    const ageCalc = function () {
-        nowDay.textContent=`${(now.getDay()-(+day.value))}`
-    };
-    if (day.value > 31) {
-      day.insertAdjacentHTML(
-        "afterend",
-        `<p style="color: var(--Lightred);"> Not valid Day</p>`
-      );
-      day.value = "";
-    }
-    if (month.value > 12) {
-      month.insertAdjacentHTML(
-        "afterend",
-        `<p style="color: var(--Lightred);"> Not valid Month</p>`
-      );
-      month.value = "";
-    }
-    if (year.value > presentYear) {
-      year.insertAdjacentHTML(
-        "afterend",
-        `<p  style="color: var(--Lightred);"> Not valid Year</p>`
-      );
-      year.value = "";
-    }
 
-    return;
+button.addEventListener("click", function () {
+  let thisMonth = now.getMonth() - +month.value;
+  nowDay = `${+(now.getDate() - +day.value)}`;
+  nowMonth = `${+(thisMonth > 0 ? thisMonth + 1 : 12 - (thisMonth + 1) * -1)}`;
+  nowYear = `${+(now.getFullYear() - +year.value)}`;
+  
+  if (notValidMessage) {
+    notValidMessage.remove();
+  } 
+
+  const validMessage = function(element , message){
+    notValidMessage = document.createElement('p');
+    notValidMessage.style.color = "var(--Lightred)";
+    notValidMessage.style.fontSize = "0.65rem";
+    notValidMessage.textContent = message;
+    element.insertAdjacentElement("afterend", notValidMessage);
+    element.value = "";
   }
-  /* 
+  if (day.value > 31) {
+    validMessage(day,"Not a valid Day")
+  }
+  if (month.value >= 13) {
+    validMessage(month,"Not a valid Month")
+  }
+  if (year.value > now.getFullYear()) {
+    validMessage(year,"Not a valid year")
+  }
+  return;
+});
+/* 
 year.parentNode.removeChild(year.nextSibling) */
-);
-
-/* const ageCalc = function () {
-    nowDay.textContent=`${(now.getDay()-(+day.value))}`
-}; */
