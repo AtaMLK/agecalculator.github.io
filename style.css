@@ -33,11 +33,11 @@ overflow: hidden;
 
 main{
     background-color: var(--White);
-max-width: 50rem;
-height: 26rem;
-padding: 2rem;
+max-width: 42rem;
+height: 33rem;
+padding: 3rem;
 margin: auto;
-border-radius: 1rem;
+border-radius: 1.5rem;
 border-bottom-right-radius: 10rem;
 }
 main header{
@@ -52,15 +52,15 @@ main header p{
     text-transform: uppercase;
 }
 main header input{
-    width: 7rem;
-    margin-right: 3rem;
+    width: 8rem;
+    margin-right: 2rem;
     font-size: 1.5rem;
     font-weight: 700;
-    padding: 0.3rem;
+    padding: 0.7rem 2rem;
     padding-left: 1rem;
     outline-color: var(--Lightgrey);
     outline: none   ;
-    border-radius: 5px;
+    border-radius: 0.5rem;
     border: 1px solid var(--Lightgrey);
 }
 /* main header input::placeholder{
@@ -68,28 +68,122 @@ color: var(--Smokeygrey);
 } */
 .divide-line{
     height: 1px;
-    width: 35rem;
+    width: 36rem;
     background-color: var(--Lightgrey);
     margin: 2rem 0;
     position: relative;
 }
 .divide-line img{
     background-color: var(--Purple);
-    width: 4rem;
-    padding: 1rem;
+    width: 4.9rem;
+    padding: 1.2rem ;
     position: absolute;
     right: 0;
-    top: -2rem;
+    top: -2.2rem;
     border-radius: 50%;
+    transition: background-color 2s;
+}
+.divide-line img:hover{
+    color: black;
+    background-color: var(--Lightred);
+    cursor: pointer;
 }
 main section{
-    font-size: 4rem;
+    font-size: 5rem;
     font-weight: 800;
     font-style: italic;
-    line-height: 4.5rem;
+    line-height: 5.8rem;
     color: var(--Offblack);
 }
 main section span{
     color: var(--Purple);
     letter-spacing: 0.5rem;
+}
+.not-valid{
+    font-size: 0.6rem;
+    color: var(--Lightred);
+    font-weight: 400;
+    margin-top: 1rem;
+}
+.hidden{
+    display: none;
+}
+
+
+
+@media screen and (max-width : 670px) {
+    main {
+        /* display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center; */
+        background-color: var(--White);
+    max-width: 21rem;
+    height: 27rem;
+    padding: 1.5rem;
+    border-radius: 1.5rem;
+    border-bottom-right-radius: 5rem;
+    }
+    main header{
+        display: flex;
+        color: var(--Smokeygrey);
+    }
+    main header p{
+        margin-bottom: 0.3rem;
+        font-size: 0.7rem;
+        font-weight: 700;
+        letter-spacing: 0.1rem;
+        text-transform: uppercase;
+    }
+    main header input{
+        width: 5rem;
+        margin-right: 1.5rem;
+        margin-bottom: 1.5rem;
+        font-size: 1rem;
+        font-weight: 700;
+        padding: 0.7rem 1rem;
+        padding-left: 1rem;
+        outline-color: var(--Lightgrey);
+        outline: none   ;
+        border-radius: 0.5rem;
+        border: 1px solid var(--Lightgrey);
+    }
+    /* main header input::placeholder{
+    color: var(--Smokeygrey);
+    } */
+    .divide-line{
+        height: 1px;
+        width: 18rem;
+        background-color: var(--Lightgrey);
+        margin: 2rem 0;
+        position: relative;
+    }
+    .divide-line img{
+        background-color: var(--Purple);
+        width: 3.4rem;
+        padding: 1rem ;
+        position: absolute;
+        right: 7rem;
+        top: -1.5rem;
+        border-radius: 50%;
+        transition: background-color 0.5s;
+    }
+    .divide-line img:hover{
+        color: black;
+        background-color: var(--Lightred);
+        z-index: 100;
+        cursor: pointer;
+    }
+    main section{
+        padding: 2.5rem 0.1rem;
+        font-size: 3rem;
+        font-weight: 800;
+        font-style: italic;
+        line-height: 3.2rem;
+        color: var(--Offblack);
+    }
+    main section span{
+        color: var(--Purple);
+        letter-spacing: 0.5rem;
+}
 }

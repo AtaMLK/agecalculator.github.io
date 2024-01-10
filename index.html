@@ -1,40 +1,46 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- displays site properly based on user's device -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- displays site properly based on user's device -->
 
   <link rel="icon" type="image/png" sizes="32x32" href="./assets/images/favicon-32x32.png">
   <link rel="stylesheet" href="style.css">
   <title>Frontend Mentor | Age calculator app</title>
 </head>
+
 <body>
 
- <main>
-  <header class="header">
-    <div class="day">
-      <p>Day</p>
-      <input type="text" placeholder="DD">
+  <main>
+    <header class="header">
+      <div >
+        <p>Day</p>
+        <input type="text" placeholder="DD" class="day">
+        
+      </div>
+      <div >
+        <p>Month</p>
+        <input type="text" placeholder="MM" class="month">
+      </div>
+      <div >
+        <p>Year</p>
+        <input type="text" placeholder="YYYY" class="year">
+      </div>
+
+    </header>
+    <div class="divide-line">
+      <img src="/assets/images/icon-arrow.svg" alt="" class="img-btn">
     </div>
-    <div class="month">
-    <p>Month</p>
-      <input type="text" placeholder="MM">
-    </div>
-    <div class="year">
-      <p>Year</p>
-      <input type="text" placeholder="YYYY">
-    </div>
-  
-  </header>
-  <div class="divide-line">
-    <img src="/assets/images/icon-arrow.svg" alt="">
-  </div>
-  <section>
-    <p><span>--</span>years</p>
-    <p><span>--</span>months</p><p><span>--</span>days</p>
-  
-  </section>
- </main>
-<script src="main.js"></script>
+    <section>
+      <p><span class="calculated-year">--</span>years</p>
+      <p><span class="calculated-month">--</span>months</p>
+      <p><span class="calculated-day">--</span>days</p>
+
+    </section>
+  </main>
+  <script src="main.js"></script>
 </body>
+
 </html>
