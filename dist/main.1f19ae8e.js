@@ -173,6 +173,9 @@ var day = document.querySelector(".day");
 var month = document.querySelector(".month");
 var year = document.querySelector(".year");
 var button = document.querySelector(".img-btn");
+var calcedYear = document.querySelector(".calculated-year");
+var calcedMonth = document.querySelector(".calculated-month");
+var calcedDay = document.querySelector(".calculated-day");
 var now = new Date();
 var notValidMessage;
 var validMessage = function validMessage(element, message) {
@@ -184,21 +187,26 @@ var validMessage = function validMessage(element, message) {
   element.value = "";
 };
 var validEntry = function validEntry() {
-  if (0 <= day.value > 31 || day.value == "") {
+  if (day.value > 31 || day.value == "" || day.value <= 0) {
     validMessage(day, "Not a valid Day");
+    day.textContent = "";
   }
-  if (0 <= month.value >= 13 || month.value == "") {
+  if (0 <= month.value >= 13 || month.value == "" || month.value <= 0) {
     validMessage(month, "Not a valid Month");
   }
-  if (year.value > now.getFullYear() || year.value == "") {
+  if (year.value > now.getFullYear() || year.value == "" || year.value <= 0) {
     validMessage(year, "Not a valid year");
   }
   return;
 };
 var calcAge = function calcAge() {
   button.addEventListener("click", function () {
+    calcedYear.textContent = +(now.getFullYear() - year.value);
+    var thisMonth = +(now.getMonth() + 1 - month.value);
+    calcedMonth.textContent = thisMonth > 0 ? thisMonth : -thisMonth;
+    var thisDay = +(now.getDate() - day.value);
+    calcedDay.textContent = thisDay > 0 ? thisDay : -thisDay;
     validEntry();
-    return;
   });
   console.log(now);
 };
@@ -228,7 +236,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "53299" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "56061" + '/');
   ws.onmessage = function (event) {
     checkedAssets = {};
     assetsToAccept = [];
