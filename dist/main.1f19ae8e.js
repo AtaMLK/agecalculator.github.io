@@ -118,46 +118,91 @@ parcelRequire = (function (modules, cache, entry, globalName) {
 
   return newRequire;
 })({"main.js":[function(require,module,exports) {
-"use strict";
+/* "use strict";
+
+const day = document.querySelector(".day");
+let nowDays = document.querySelector(".calculated-day").textContent;
+const month = document.querySelector(".month");
+let nowMonths = document.querySelector(".calculated-month").textContent;
+const year = document.querySelector(".year");
+let nowYears = document.querySelector(".calculated-year").textContent;
+const button = document.querySelector(".img-btn");
+let notValidMessage;
+
+const now = new Date();
+
+const calcAge = function () {
+  button.addEventListener("click", function (e) {
+    let thisMonth = now.getMonth() - +month.value;
+    day = `${+(now.getDate() - +day.value)}`;
+    month = `${+(thisMonth > 0 ? thisMonth + 1 : 12 - (thisMonth + 1) * -1)}`;
+    year = `${+(now.getFullYear() - +year.value)}`;
+    console.log(e.target);
+
+    if (notValidMessage) {
+      notValidMessage.remove();
+    }
+
+    const validMessage = function (element, message) {
+      notValidMessage = document.createElement("p");
+      notValidMessage.style.color = "var(--Lightred)";
+      notValidMessage.style.fontSize = "0.6rem";
+      notValidMessage.textContent = message;
+      element.insertAdjacentElement("afterend", notValidMessage);
+      element.value = "";
+    };
+    if ( 0 <= day.value > 31 || day.value =='') {
+      validMessage(day, "Not a valid Day");
+    }
+    if (0 <= month.value >= 13) {
+      validMessage(month, "Not a valid Month");
+    }
+    if (year.value > now.getFullYear()) {
+      validMessage(year, "Not a valid year");
+    }
+    element.value = "";
+    return;
+  });
+
+  nowDays.textContent = "nowday";
+};
+
+ */
 
 var day = document.querySelector(".day");
-var nowDay = document.querySelector(".calculated-day").textContent;
 var month = document.querySelector(".month");
-var nowMonth = document.querySelector(".calculated-month").textContent;
 var year = document.querySelector(".year");
-var nowYear = document.querySelector(".calculated-year").textContent;
 var button = document.querySelector(".img-btn");
-var notValidMessage;
 var now = new Date();
-button.addEventListener("click", function () {
-  var thisMonth = now.getMonth() - +month.value;
-  nowDay = "".concat(+(now.getDate() - +day.value));
-  nowMonth = "".concat(+(thisMonth > 0 ? thisMonth + 1 : 12 - (thisMonth + 1) * -1));
-  nowYear = "".concat(+(now.getFullYear() - +year.value));
-  if (notValidMessage) {
-    notValidMessage.remove();
-  }
-  var validMessage = function validMessage(element, message) {
-    notValidMessage = document.createElement('p');
-    notValidMessage.style.color = "var(--Lightred)";
-    notValidMessage.style.fontSize = "0.65rem";
-    notValidMessage.textContent = message;
-    element.insertAdjacentElement("afterend", notValidMessage);
-    element.value = "";
-  };
-  if (day.value > 31) {
+var notValidMessage;
+var validMessage = function validMessage(element, message) {
+  notValidMessage = document.createElement("p");
+  notValidMessage.style.color = "var(--Lightred)";
+  notValidMessage.style.fontSize = "0.6rem";
+  notValidMessage.textContent = message;
+  element.insertAdjacentElement("afterend", notValidMessage);
+  element.value = "";
+};
+var validEntry = function validEntry() {
+  if (0 <= day.value > 31 || day.value == "") {
     validMessage(day, "Not a valid Day");
   }
-  if (month.value >= 13) {
+  if (0 <= month.value >= 13 || month.value == "") {
     validMessage(month, "Not a valid Month");
   }
-  if (year.value > now.getFullYear()) {
+  if (year.value > now.getFullYear() || year.value == "") {
     validMessage(year, "Not a valid year");
   }
   return;
-});
-/* 
-year.parentNode.removeChild(year.nextSibling) */
+};
+var calcAge = function calcAge() {
+  button.addEventListener("click", function () {
+    validEntry();
+    return;
+  });
+  console.log(now);
+};
+calcAge();
 },{}],"../../../AppData/Roaming/npm/node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
@@ -183,7 +228,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "54136" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "53299" + '/');
   ws.onmessage = function (event) {
     checkedAssets = {};
     assetsToAccept = [];
