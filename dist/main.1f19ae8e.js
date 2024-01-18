@@ -118,46 +118,99 @@ parcelRequire = (function (modules, cache, entry, globalName) {
 
   return newRequire;
 })({"main.js":[function(require,module,exports) {
-"use strict";
+/* "use strict";
+
+const day = document.querySelector(".day");
+let nowDays = document.querySelector(".calculated-day").textContent;
+const month = document.querySelector(".month");
+let nowMonths = document.querySelector(".calculated-month").textContent;
+const year = document.querySelector(".year");
+let nowYears = document.querySelector(".calculated-year").textContent;
+const button = document.querySelector(".img-btn");
+let notValidMessage;
+
+const now = new Date();
+
+const calcAge = function () {
+  button.addEventListener("click", function (e) {
+    let thisMonth = now.getMonth() - +month.value;
+    day = `${+(now.getDate() - +day.value)}`;
+    month = `${+(thisMonth > 0 ? thisMonth + 1 : 12 - (thisMonth + 1) * -1)}`;
+    year = `${+(now.getFullYear() - +year.value)}`;
+    console.log(e.target);
+
+    if (notValidMessage) {
+      notValidMessage.remove();
+    }
+
+    const validMessage = function (element, message) {
+      notValidMessage = document.createElement("p");
+      notValidMessage.style.color = "var(--Lightred)";
+      notValidMessage.style.fontSize = "0.6rem";
+      notValidMessage.textContent = message;
+      element.insertAdjacentElement("afterend", notValidMessage);
+      element.value = "";
+    };
+    if ( 0 <= day.value > 31 || day.value =='') {
+      validMessage(day, "Not a valid Day");
+    }
+    if (0 <= month.value >= 13) {
+      validMessage(month, "Not a valid Month");
+    }
+    if (year.value > now.getFullYear()) {
+      validMessage(year, "Not a valid year");
+    }
+    element.value = "";
+    return;
+  });
+
+  nowDays.textContent = "nowday";
+};
+
+ */
 
 var day = document.querySelector(".day");
-var nowDay = document.querySelector('.calculated-day');
 var month = document.querySelector(".month");
-var nowMonth = document.querySelector('.calculated-month');
 var year = document.querySelector(".year");
-var nowYear = document.querySelector('.calculated-year');
-var button = document.querySelector(".img-btn"); /* 
-                                                 const notValid = document.querySelector('#notValid') */
-
+var button = document.querySelector(".img-btn");
+var calcedYear = document.querySelector(".calculated-year");
+var calcedMonth = document.querySelector(".calculated-month");
+var calcedDay = document.querySelector(".calculated-day");
 var now = new Date();
-console.log(now);
-var ageMonth = now.getMonth();
-var presentYear = now.getFullYear();
-console.log(now.getSeconds);
-button.addEventListener("click", function (day, month, year) {
-  var ageCalc = function ageCalc() {
-    nowDay.textContent = "".concat(now.getDay() - +day.value);
-  };
-  if (day.value > 31) {
-    day.insertAdjacentHTML("afterend", "<p style=\"color: var(--Lightred);\"> Not valid Day</p>");
-    day.value = "";
+var notValidMessage;
+var validMessage = function validMessage(element, message) {
+  notValidMessage = document.createElement("p");
+  notValidMessage.style.color = "var(--Lightred)";
+  notValidMessage.style.fontSize = "0.6rem";
+  notValidMessage.textContent = message;
+  element.insertAdjacentElement("afterend", notValidMessage);
+  element.value = "";
+};
+var validEntry = function validEntry() {
+  if (day.value > 31 || day.value == "" || day.value <= 0) {
+    validMessage(day, "Not a valid Day");
+    day.textContent = "";
   }
-  if (month.value > 12) {
-    month.insertAdjacentHTML("afterend", "<p style=\"color: var(--Lightred);\"> Not valid Month</p>");
-    month.value = "";
+  if (0 <= month.value >= 13 || month.value == "" || month.value <= 0) {
+    validMessage(month, "Not a valid Month");
   }
-  if (year.value > presentYear) {
-    year.insertAdjacentHTML("afterend", "<p  style=\"color: var(--Lightred);\"> Not valid Year</p>");
-    year.value = "";
+  if (year.value > now.getFullYear() || year.value == "" || year.value <= 0) {
+    validMessage(year, "Not a valid year");
   }
   return;
-}
-/* 
-year.parentNode.removeChild(year.nextSibling) */);
-
-/* const ageCalc = function () {
-    nowDay.textContent=`${(now.getDay()-(+day.value))}`
-}; */
+};
+var calcAge = function calcAge() {
+  button.addEventListener("click", function () {
+    calcedYear.textContent = +(now.getFullYear() - year.value);
+    var thisMonth = +(now.getMonth() + 1 - month.value);
+    calcedMonth.textContent = thisMonth > 0 ? thisMonth : -thisMonth;
+    var thisDay = +(now.getDate() - day.value);
+    calcedDay.textContent = thisDay > 0 ? thisDay : -thisDay;
+    validEntry();
+  });
+  console.log(now);
+};
+calcAge();
 },{}],"../../../AppData/Roaming/npm/node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
@@ -183,7 +236,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "63210" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "56061" + '/');
   ws.onmessage = function (event) {
     checkedAssets = {};
     assetsToAccept = [];
