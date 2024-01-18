@@ -1,53 +1,5 @@
-/* "use strict";
+"use strict";
 
-const day = document.querySelector(".day");
-let nowDays = document.querySelector(".calculated-day").textContent;
-const month = document.querySelector(".month");
-let nowMonths = document.querySelector(".calculated-month").textContent;
-const year = document.querySelector(".year");
-let nowYears = document.querySelector(".calculated-year").textContent;
-const button = document.querySelector(".img-btn");
-let notValidMessage;
-
-const now = new Date();
-
-const calcAge = function () {
-  button.addEventListener("click", function (e) {
-    let thisMonth = now.getMonth() - +month.value;
-    day = `${+(now.getDate() - +day.value)}`;
-    month = `${+(thisMonth > 0 ? thisMonth + 1 : 12 - (thisMonth + 1) * -1)}`;
-    year = `${+(now.getFullYear() - +year.value)}`;
-    console.log(e.target);
-
-    if (notValidMessage) {
-      notValidMessage.remove();
-    }
-
-    const validMessage = function (element, message) {
-      notValidMessage = document.createElement("p");
-      notValidMessage.style.color = "var(--Lightred)";
-      notValidMessage.style.fontSize = "0.6rem";
-      notValidMessage.textContent = message;
-      element.insertAdjacentElement("afterend", notValidMessage);
-      element.value = "";
-    };
-    if ( 0 <= day.value > 31 || day.value =='') {
-      validMessage(day, "Not a valid Day");
-    }
-    if (0 <= month.value >= 13) {
-      validMessage(month, "Not a valid Month");
-    }
-    if (year.value > now.getFullYear()) {
-      validMessage(year, "Not a valid year");
-    }
-    element.value = "";
-    return;
-  });
-
-  nowDays.textContent = "nowday";
-};
-
- */
 
 const day = document.querySelector(".day");
 const month = document.querySelector(".month");
@@ -57,40 +9,75 @@ let calcedYear = document.querySelector(".calculated-year");
 let calcedMonth = document.querySelector(".calculated-month");
 let calcedDay = document.querySelector(".calculated-day");
 const now = new Date();
-let notValidMessage;
+let errorMessage;
 
-const validMessage = function (element, message) {
-  notValidMessage = document.createElement("p");
-  notValidMessage.style.color = "var(--Lightred)";
-  notValidMessage.style.fontSize = "0.6rem";
-  notValidMessage.textContent = message;
-  element.insertAdjacentElement("afterend", notValidMessage);
-  element.value = "";
+const showMessage = function (element, message) {
+    if(errorMessage){
+      errorMessage.remove()
+    }
+
+      console.log(message)
+    errorMessage = document.createElement("p");
+    errorMessage.style.color = "var(--Lightred)";
+    errorMessage.style.fontSize = "0.6rem";
+    errorMessage.textContent = message;
+    element.insertAdjacentElement("afterend", errorMessage);
+    element.value = "";
 };
 
-const validEntry = function () {
+const notValidEntry = function () {
   if (day.value > 31 || day.value == "" || day.value <= 0) {
-    validMessage(day, "Not a valid Day");
-    day.textContent = "";
+    showMessage(day, "Not a valid Day");
   }
-  if (0 <= month.value >= 13 || month.value == "" || month.value <= 0) {
-    validMessage(month, "Not a valid Month");
+  if ( month.value >= 13 || month.value == "" || month.value < 0) {
+    showMessage(month, "Not a valid Month");
   }
   if (year.value > now.getFullYear() || year.value == "" || year.value <= 0) {
-    validMessage(year, "Not a valid year");
+    showMessage(year, "Not a valid year");
   }
-  return;
 };
 
 const calcAge = function () {
-  button.addEventListener("click", function () {
-    calcedYear.textContent = +(now.getFullYear() - year.value);
-    let thisMonth = +(now.getMonth() + 1 - month.value);
-    calcedMonth.textContent = thisMonth > 0 ? thisMonth : -thisMonth;
+  // Check if any of the required input fields are empty
+  if (day.value === "" || month.value === "" || year.value === "" ) {
+    notValidEntry()
+    // Display an error message or handle the case as needed
+    return;
+  }
+    let thisMonth = +(now.getMonth() - month.value )  + 1;
     let thisDay = +(now.getDate() - day.value);
-    calcedDay.textContent = thisDay > 0 ? thisDay : -thisDay;
-    validEntry();
-  });
-  console.log(now);
+
+    if (now.getFullYear() > year.value ){calcedYear.textContent = +(now.getFullYear() - year.value) -1;
+    }
+    else{
+      calcedYear.textContent = "--"
+    }
+    if ( (now.getMonth()+1) >= month.value){
+      calcedMonth.textContent = thisMonth
+    }
+    else if ( 12 < month.value){
+      calcedMonth.textContent = "--"
+    }
+    else{
+      calcedMonth.textContent = 12 - month.value
+    }
+    if (now.getDate() >= day.value ){
+      calcedDay.textContent = thisDay
+      calcedMonth.textContent = 13 - month.value
+    }
+    else if (day.value > 31 ){
+      
+      calcedDay.textContent = "--"
+    }
+    else{
+      calcedDay.textContent =30 + thisDay
+    }
+  notValidEntry()
+   // Clear input values after calculation
+   day.value = "";
+   month.value = "";
+   year.value = "";
 };
-calcAge();
+
+// Trigger calcAge() when the button is clicked
+button.addEventListener("click", calcAge);
