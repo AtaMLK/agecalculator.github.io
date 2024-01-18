@@ -1,0 +1,187 @@
+@import "https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,400;0,700;1,400;1,800&display=swap";
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: Poppins;
+}
+
+:root {
+  --Purple: #854cff;
+  --Lightred: #ff5757;
+  --White: #fff;
+  --Offwhite: #f0f0f0;
+  --Lightgrey: #dbdbdb;
+  --Smokeygrey: #716f6f;
+  --Offblack: #141414;
+}
+
+body {
+  background-color: var(--Offwhite);
+  justify-content: center;
+  align-items: center;
+  max-width: 1440px;
+  min-height: 100vh;
+  display: flex;
+  overflow: hidden;
+}
+
+main {
+  background-color: var(--White);
+  border-radius: 1.5rem 1.5rem 10rem;
+  max-width: 42rem;
+  height: 33rem;
+  margin: auto;
+  padding: 3rem;
+}
+
+main header {
+  color: var(--Smokeygrey);
+  display: flex;
+}
+
+main header p {
+  letter-spacing: .1rem;
+  text-transform: uppercase;
+  margin-bottom: .5rem;
+  font-size: .7rem;
+  font-weight: 700;
+}
+
+main header input {
+  outline-color: var(--Lightgrey);
+  border: 1px solid var(--Lightgrey);
+  border-radius: .5rem;
+  outline: none;
+  width: 8rem;
+  margin-right: 2rem;
+  padding: .7rem 2rem .7rem 1rem;
+  font-size: 1.5rem;
+  font-weight: 700;
+}
+
+.divide-line {
+  background-color: var(--Lightgrey);
+  width: 36rem;
+  height: 1px;
+  margin: 2rem 0;
+  position: relative;
+}
+
+.divide-line img {
+  background-color: var(--Purple);
+  border-radius: 50%;
+  width: 4.9rem;
+  padding: 1.2rem;
+  transition: background-color 2s;
+  position: absolute;
+  top: -2.2rem;
+  right: 0;
+}
+
+.divide-line img:hover {
+  color: #000;
+  background-color: var(--Lightred);
+  cursor: pointer;
+}
+
+main section {
+  color: var(--Offblack);
+  font-size: 5rem;
+  font-style: italic;
+  font-weight: 800;
+  line-height: 5.8rem;
+}
+
+main section span {
+  color: var(--Purple);
+  letter-spacing: .5rem;
+}
+
+.not-valid {
+  color: var(--Lightred);
+  margin-top: 1rem;
+  font-size: .6rem;
+  font-weight: 400;
+}
+
+.hidden {
+  display: none;
+}
+
+@media screen and (width <= 670px) {
+  main {
+    background-color: var(--White);
+    border-radius: 1.5rem 1.5rem 5rem;
+    max-width: 21rem;
+    height: 27rem;
+    padding: 1.5rem;
+  }
+
+  main header {
+    color: var(--Smokeygrey);
+    display: flex;
+  }
+
+  main header p {
+    letter-spacing: .1rem;
+    text-transform: uppercase;
+    margin-bottom: .3rem;
+    font-size: .7rem;
+    font-weight: 700;
+  }
+
+  main header input {
+    outline-color: var(--Lightgrey);
+    border: 1px solid var(--Lightgrey);
+    border-radius: .5rem;
+    outline: none;
+    width: 5rem;
+    margin-right: 1.5rem;
+    padding: .7rem 1rem;
+    font-size: 1rem;
+    font-weight: 700;
+  }
+
+  .divide-line {
+    background-color: var(--Lightgrey);
+    width: 18rem;
+    height: 1px;
+    margin: 3.5rem 0 2rem;
+    position: relative;
+  }
+
+  .divide-line img {
+    background-color: var(--Purple);
+    border-radius: 50%;
+    width: 3.4rem;
+    padding: 1rem;
+    transition: background-color .5s;
+    position: absolute;
+    top: -1.5rem;
+    right: 7rem;
+  }
+
+  .divide-line img:hover {
+    color: #000;
+    background-color: var(--Lightred);
+    z-index: 100;
+    cursor: pointer;
+  }
+
+  main section {
+    color: var(--Offblack);
+    padding: 2.5rem .1rem;
+    font-size: 3rem;
+    font-style: italic;
+    font-weight: 800;
+    line-height: 3.2rem;
+  }
+
+  main section span {
+    color: var(--Purple);
+    letter-spacing: .5rem;
+  }
+}
+
+/*# sourceMappingURL=index.3a01df49.css.map */
