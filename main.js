@@ -46,10 +46,16 @@ const calcAge = function () {
   }
     let thisMonth = +(now.getMonth() - month.value )  + 1;
     let thisDay = +(now.getDate() - day.value);
+    let thisYear = +(now.getFullYear() - year.value) -1
 
-    if (now.getFullYear() > year.value ){calcedYear.textContent = +(now.getFullYear() - year.value) -1;
+    if (now.getFullYear() > year.value ){calcedYear.textContent = thisYear;
+    }
+    else if(now.getFullYear()=year.value) {
+      
+      calcedYear.textContent = "00"
     }
     else{
+      
       calcedYear.textContent = "--"
     }
     if ( (now.getMonth()+1) >= month.value){
@@ -59,11 +65,10 @@ const calcAge = function () {
       calcedMonth.textContent = "--"
     }
     else{
-      calcedMonth.textContent = 12 - month.value
+      calcedMonth.textContent = 13 - month.value
     }
     if (now.getDate() >= day.value ){
       calcedDay.textContent = thisDay
-      calcedMonth.textContent = 13 - month.value
     }
     else if (day.value > 31 ){
       
@@ -71,6 +76,9 @@ const calcAge = function () {
     }
     else{
       calcedDay.textContent =30 + thisDay
+    }
+    if(now.getDate() <= day.value && (now.getMonth()+1) <= month.value  ){
+      calcedYear.textContent = +(now.getFullYear() - year.value);
     }
   notValidEntry()
    // Clear input values after calculation
